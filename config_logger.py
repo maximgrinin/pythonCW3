@@ -1,8 +1,13 @@
-from config import LOG_PATH, LOGGER_FORMAT, LOGGER_FORMAT_DATE
+from config import LOG_DIR, LOG_PATH, LOGGER_FORMAT, LOGGER_FORMAT_DATE
 import logging
+import os
 
 
 def logger_configure():
+    # Позаботимся чтобы была папка с логами
+    if not os.path.exists(LOG_DIR):
+        os.makedirs(LOG_DIR)
+
     # Создаем регистратор с именем 'api_logger'
     api_logger = logging.getLogger("api_logger")
     api_logger.setLevel(logging.DEBUG)
